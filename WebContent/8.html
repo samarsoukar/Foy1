@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<title>Insert title here</title>
+		<style type="text/css">
+			span{
+				background-color:red;
+				color:white;
+				display:none;
+			}
+		</style>
+	</head>
+	<body>
+		<p>
+			<span class="quotes">Ne Mutlu Türk’üm Diyene!</span><br>
+			<span class="quotes">Ne Mutlu Türk’üm Diyene!</span><br>
+			<span class="quotes">Ne Mutlu Türk’üm Diyene!</span><br>
+			<span class="quotes">Ne Mutlu Türk’üm Diyene!</span><br>
+			<span class="quotes">Ne Mutlu Türk’üm Diyene!</span><br>
+			<span class="quotes">Ne Mutlu Türk’üm Diyene!</span><br>
+			<span class="quotes">Ne Mutlu Türk’üm Diyene!</span><br>
+			<span class="quotes">Ne Mutlu Türk’üm Diyene!</span><br>
+			<span class="quotes">Ne Mutlu Türk’üm Diyene!</span><br>
+			<span class="quotes">Ne Mutlu Türk’üm Diyene!</span><br>
+		</p>
+		<script>
+	    (function() {
+	        var quotes = $(".quotes");
+	        var quoteIndex = -1;
+	        function showNextQuote() {
+	            ++quoteIndex;
+	            quotes.eq(quoteIndex % quotes.length)
+	                .fadeIn(2000, showNextQuote);
+	        }
+	        showNextQuote();
+	    })();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<select name="day" id="day" ></select>
+		<select name="month" id="month"></select>
+		<select name="year" id="year"></select>
+		<input type="text" id="date1" name="date1" value="" readonly>
+		<button  id="calc" name="calc" onclick="claculate()">Calculate</button>
+		<script type="text/javascript">
+			function claculate(){
+				var day3 = document.getElementById("day").options[document.getElementById("day").selectedIndex].text;
+				var month3 = document.getElementById("month").options[document.getElementById("month").selectedIndex].text;
+				var year3 = document.getElementById("year").options[document.getElementById("year").selectedIndex].text;
+				var date2 = new Date();
+				var today = new Date();
+				var dd = today.getDate();
+				var mm = today.getMonth()+1; 
+				var yyyy = today.getFullYear();
+
+				if(dd<10) {
+				    dd='0'+dd
+				} 
+
+				if(mm<10) {
+				    mm='0'+mm
+				} 
+
+				today = yyyy+'-'+mm+'-'+dd;
+				
+				if(day3<10) {
+				    day3='0'+ day3
+				} 
+
+				if(month3<10) {
+				    month3='0'+month3
+				} 
+				
+				date2 = year3+'-'+month3+'-'+day3;
+				
+				var sub = Math.abs(new Date(today) - new Date(date2));
+				
+				document.getElementById("date1").value = Math.ceil(sub / (1000*3600*24));
+			}
+			function populateyear(){
+				var years = document.getElementById("year");
+				years.length = 0;
+				years.options[0] = new Option('Year','0');
+				years.selectedIndex = 0;
+				for (var i=1907; i<2017; i++) {
+					years.options[years.length] = new Option(i,i);
+				}
+			}
+			function populatemonth(monthid,dayid){
+				var months = document.getElementById(monthid);
+				months.length = 0;
+				months.options[0] = new Option('Month','-1');
+				months.selectedIndex = 0;
+				for (var i=1; i<13; i++) {
+					months.options[months.length] = new Option(i,i);
+				}
+				if(dayid){
+					months.onchange = function(){
+						populateday(monthid,dayid);
+					};
+				}
+			}
+			function populateday(monthid,dayid){
+				var maxday = 32;
+				var monthindex = document.getElementById(monthid).options[document.getElementById(monthid).selectedIndex].text;
+				var days = document.getElementById(dayid);
+				days.length = 0;
+				days.options[0] = new Option('Day','');
+				days.selectedIndex = 0;
+				if (monthindex == 2)
+					maxday = 29;
+				else if (monthindex == 4 || monthindex == 6 || monthindex == 9 || monthindex == 11)
+					maxday = 31;
+				else
+					maxday = 32;
+				for (var j=1; j<maxday ; j++) {
+					days.options[days.length] = new Option(j,j);
+				}
+			}
+			populateyear();
+			populatemonth("month","day");
+		</script>
+	</body>
+</html>
